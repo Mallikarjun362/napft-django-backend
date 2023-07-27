@@ -4,6 +4,12 @@ os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 import tensorflow
 from tensorflow.keras.layers import GlobalMaxPooling2D
 from tensorflow.keras.applications.resnet50 import ResNet50
+
+
+import tensorflowjs as tfjs
+
+
+
 # import joblib
 # Building Model
 model = ResNet50(weights='imagenet',include_top=False,input_shape=(224,224,3))
@@ -17,3 +23,4 @@ model.compile()
 # joblib.dump(model,'../../saved_models/resnet50_model_for_embeddings.joblib');
 # model.save("resnet50_model_for_embeddings.h5")
 
+tfjs.converters.save_keras_model(model,"resnet50_model_tfjs")
